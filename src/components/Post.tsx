@@ -17,7 +17,7 @@ import styles from "./Post.module.css";
 
 interface PROPS {
   postId: string;
-  avater: string;
+  avatar: string;
   image: string;
   text: string;
   timestamp: any;
@@ -70,7 +70,7 @@ const Post: React.FC<PROPS> = (props) => {
     addDoc(collection(db, "posts", props.postId, "comments"), {
       avatar: user.photoUrl,
       text: comment,
-      timestanp: serverTimestamp(),
+      timestamp: serverTimestamp(),
       username: user.displayName,
     });
     setComment("");
@@ -79,7 +79,7 @@ const Post: React.FC<PROPS> = (props) => {
   return (
     <div className={styles.post}>
       <div className={styles.post_avatar}>
-        <Avatar src={props.avater} />
+        <Avatar src={props.avatar} />
       </div>
       <div className={styles.post_body}>
         <div>
