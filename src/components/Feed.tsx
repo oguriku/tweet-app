@@ -1,10 +1,8 @@
-import { signOut } from "firebase/auth";
 import React, { useState } from "react";
-
 import { useEffect } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
-import { auth, db } from "../firebase";
+import { db } from "../firebase";
 import TweetInput from "./TweetInput";
 import styles from "./Feed.module.css";
 import Post from "./Post";
@@ -20,7 +18,7 @@ const Feed: React.FC = () => {
       username: "",
     },
   ]);
-
+  
   useEffect(() => {
     const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
     const unSub = onSnapshot(q, (snapshot) => {
@@ -41,13 +39,13 @@ const Feed: React.FC = () => {
   }, []);
   return (
     <div className={styles.feed}>
-      <TweetInput />]
+      <TweetInput />
       {posts[0]?.id && (
         <>
           {posts.map((post) => (
             <Post
               key={post.id}
-              postid={post.id}
+              postId={post.id}
               avater={post.avater}
               image={post.image}
               text={post.text}
